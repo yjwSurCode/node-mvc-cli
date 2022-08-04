@@ -1,0 +1,25 @@
+{
+  "name": "node-mvc-cli",
+  "version": "1.0.2",
+  "description": "node基于express的脚手架",
+  "main": "lib/cli.js",
+  "bin": {
+    "node-mvc-cli": "npm install && bin/cli.js",
+    "start": "npm install && node bin/cli.js"
+  },
+  "scripts": {
+    "node-express-cli": "bin/cli.js",
+    "start": "node bin/cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yjwSurCode/node-express-cli.git"
+  },
+  "author": "sur-code",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yjwSurCode/node-express-cli/issues"
+  },
+  "homepage": "https://github.com/yjwSurCode/node-express-cli#readme"
+}
