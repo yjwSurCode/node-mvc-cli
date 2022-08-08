@@ -6,6 +6,7 @@
  * created by sur-code
  */
 
+const fs = require('fs');
 const path = require('path');
 // import path from 'path'
 const program = require('commander');
@@ -79,6 +80,7 @@ Reflect.ownKeys(mapActions).forEach((action) => {
                 if (action == 'init-mvc') { withAuth = true }
 
                 expressGenTs(destination = 'project-init', withAuth).then((name) => {
+                    if (name = 'exists') { return }
                     console.log('cd', name);
                     console.log('npm run dev (or `yarn dev`)');
                 });

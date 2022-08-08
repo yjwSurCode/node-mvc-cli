@@ -1,5 +1,8 @@
 # node-express-mvc-cli or create-node-express
 
+
+客户端请求一个路由,通过路由转发给控制器，控制器引入models和处理各种业务逻辑，models专门封装对数据的增删查改操作。
+
 node 基于 express 的脚手架
 
 ## 命令行
