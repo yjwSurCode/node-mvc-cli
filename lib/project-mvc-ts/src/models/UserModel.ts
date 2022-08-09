@@ -1,24 +1,26 @@
 import { db, Order } from "../mysql/index";
 
-const UserModel = (req, res, next) => {
-  const users = db.sequelizeRoot.query("SELECT * FROM `user`", {
-    type: db.sequelizeRoot.QueryTypes.SELECT,
-  });
+interface routeAppState {
+  req: any;
+  res: any;
+}
 
-  let promise = new Promise((resolve, reject) => {
-    users.then((e: any) => {
-      console.log("33333333333333", e);
-      resolve("传递参数");
+const UserModel = (param: any) => {
+  return new Promise((resolve, reject) => {
+    const res = db.sequelizeRoot.query(`SELECT * FROM user where id=${param}`, {
+      type: db.sequelizeRoot.QueryTypes.SELECT,
     });
+    resolve(res);
+  }).then((val: any) => {
+    const res = db.sequelizeRoot.query(
+      `SELECT * FROM user where userId='${val[0].userId}'`,
+      {
+        type: db.sequelizeRoot.QueryTypes.SELECT,
+      }
+    );
+
+    return res;
   });
-  promise.then(
-    (rows) => {
-      res.json(rows);
-    },
-    (error) => {
-      if (error) throw error;
-    }
-  );
 };
 
 export { UserModel };

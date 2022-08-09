@@ -1,7 +1,6 @@
 # node-express-mvc-cli or create-node-express
 
-
-客户端请求一个路由,通过路由转发给控制器，控制器引入models和处理各种业务逻辑，models专门封装对数据的增删查改操作。
+客户端请求一个路由,通过路由转发给控制器，控制器引入 models 和处理各种业务逻辑，models 专门封装对数据的增删查改操作。再返回给控制器，最后结果返回到view
 
 node 基于 express 的脚手架
 
@@ -273,3 +272,46 @@ if (error.isTtyError) {
 } else {
 // Something else went wrong
 }
+
+知识点：
+
+const UserModel = (param: any) => {
+console.log(param, "param");
+return new Promise((resolve, reject) => {
+const res = db.sequelizeRoot.query(`SELECT * FROM user where id=${param}`, {
+type: db.sequelizeRoot.QueryTypes.SELECT,
+});
+
+    console.log("Database syntax error", res);
+
+    // const isError = res.then((e: any) => {
+    //   console.log(e, "6666");
+    //   return e;
+    // });
+    // console.log("Database syntax error111", isError);
+
+    // /register
+    // middleware...
+    // 7 param
+    // 66666 Promise { <pending> }
+    // TRY ERROR[object Promise]
+
+    // if (res) {
+    //   reject(res);
+    // }
+
+    resolve(res);
+
+}).then((val: any) => {
+console.log("val", val);
+const res = db.sequelizeRoot.query(
+`SELECT * FROM user where userId='${val[0].userId}'`,
+{
+type: db.sequelizeRoot.QueryTypes.SELECT,
+}
+);
+
+    return res;
+
+});
+};

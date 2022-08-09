@@ -21,7 +21,7 @@ const expressGenTs = require('../lib/node-express-mvc-cli');
 
 
 
-// 根据我们想要实现的功能配置执行动作，遍历产生对应的命令
+/** 根据我们想要实现的功能配置执行动作，遍历产生对应的命令 */
 const mapActions = {
     "init": {
         alias: 'i',
@@ -67,7 +67,7 @@ const mapActions = {
 }
 
 
-// Object.keys()==Reflect.ownKeys
+/** Object.keys()==Reflect.ownKeys */
 Reflect.ownKeys(mapActions).forEach((action) => {
     program.command(action) //name
         .alias(mapActions[action].alias) // alias
@@ -90,7 +90,7 @@ Reflect.ownKeys(mapActions).forEach((action) => {
 })
 
 
-// 监听用户的help事件
+/*监听用户的help事件*/
 program.on('--help', () => {
     console.log('\nExamples:');
     Reflect.ownKeys(mapActions).forEach((action) => {
@@ -110,54 +110,3 @@ program.version(version, '-v', '--version')
 if (!program.args.length) {
     program.help();
 }
-
-
-// return
-
-
-// (() => {
-//     console.log('Setting up new Express/TypeScript project...');
-//     // const opts = processOptions(process.argv.slice(2));
-//     // Process options
-//     let destination = 'project-init';
-//     let withAuth = false;
-//     let useYarn = false;
-//     let useSocketIo = false;
-//     const args = process.argv.slice(2);
-//     let idx = -1;
-//     //1
-//     idx = args.indexOf('--with-mvc');
-//     if (idx > -1) {
-//         withAuth = true;
-//         args.splice(idx, 1);
-//         destination = 'project-mvc';
-//     }
-//     //2
-//     idx = args.indexOf('--use-yarn');
-//     if (idx > -1) {
-//         useYarn = true;
-//         args.splice(idx, 1);
-//     }
-//     //3
-//     idx = args.indexOf('--socket-io');
-//     if (idx > -1) {
-//         useSocketIo = true;
-//         withAuth = true;
-//         args.splice(idx, 1);
-//     }
-//     //init
-//     if (args.length > 0 && args.indexOf('--init') > -1) {
-//         //TODO step 0
-//         destination = 'project-init'
-//     }
-//     //?  destination 创建目录名称
-//     destination = path.join(process.cwd(), destination);
-
-//     console.log('destination, withAuth, useYarn, useSocketIo', destination, withAuth, useYarn, useSocketIo)
-
-//     // Creating new project finished
-//     expressGenTs(destination, withAuth, useYarn, useSocketIo).then(() => {
-//         console.log('Project setup complete!');
-//     });
-
-// })();
